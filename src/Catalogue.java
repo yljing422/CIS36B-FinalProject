@@ -12,7 +12,7 @@ public interface Catalogue {
      * Reads from a file and populates the catalogue
      * @param input the Scanner used to read in the data
      */
-    void populateCatalogue(Scanner input) throws IOException;
+    void populateIngredients(Scanner input) throws IOException;
    
     /**
      * Searches for b in the catalogue
@@ -20,7 +20,7 @@ public interface Catalogue {
      * @return the location of b in
      * the catalogue
      */
-    boolean binarySearch(Ingredient i);
+    int binarySearch(Ingredient i);
    
     /**
      * Sorts the catalogue into
