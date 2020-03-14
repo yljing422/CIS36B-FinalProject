@@ -1,74 +1,268 @@
 /**
-* @author 
-* @author 
-* CIS 36B, Final Project
-*/
+ * @author
+ * @author
+ * CIS 36B, Final Project
+ */
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.*;
 
-public class SaladBar implements Catalogue {
-    private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
-    private static final String fileName = "ingredients.txt";
-    ArrayList<BasicSalad> Salads;
-    
-	public void populateIngredients(Scanner input) {
-		// try-catch here
+public class SaladBar {
+
+	/**
+	 * Display the Chef's Creation Menu
+	 */
+	public void printMenu() {  // this can be moved to class ChefCreation
+		System.out.println("\nHere is our Chef's Creation menu:");
+		for (int i = 0; i < ChefCreation.dishesName.length; i++) {
+			System.out.println((i + 1) + ". " + ChefCreation.dishesName[i]);
+		}
+	}
+
+	public void printIngredient(String[] ingredients) {
+		System.out.println("The ingredients are: ");
+		for (int i = 0; i < ingredients.length - 1; i++) {
+			System.out.print(ingredients[i] + ", ");
+		}
+		System.out.println(ingredients[ingredients.length - 1]);
 	}
 	
-	public void printMenu() {
-    	
-    }
-	    
-	public int binarySearch(Ingredient i) {
-		return 0;
+	public String askSize(Scanner input) {
+		System.out.print("\nWhat size do you want? (1 for small, 2 for large): ");
+		int size = input.nextInt();
+		while (size != 1 && size != 2) {
+			System.out.println("Wrong enter, please try again.");
+			System.out.print("What size do you want? (1 for small, 2 for large): ");
+			size = input.nextInt();
+		}
+		
+		if (size == 1) {
+			return "small";
+		} else {
+			return "large";
+		}
 	}
 	
-	public void bubbleSort() { 
-    	for (int i = 0; i < ingredients.size() - 1; i++) {
-    		for (int j = 0; j < ingredients.size() - 1 - i; j++) {
-    			if (ingredients.get(j).compareTo(ingredients.get(j + 1)) > 0) {
-    				Ingredient temp = ingredients.get(j);
-    				ingredients.set(j, ingredients.get(j + 1));
-    				ingredients.set(j + 1, temp);
-    			}
-    		}
-    	}    
-	}
-    
-	public int linearSearch(String type) {
-		return 0;
+	public void addIngredient(Scanner input) {
+		int chefOption;
+		System.out.print("What type of ingredient do you want to add?");
+		System.out.println("1. Greens\n2. Veggies\n3. Protein\n4. Topping\n5. Dressing");
+		chefOption = input.nextInt();
 	}
 	
-    public void printTypeIngredients() {
-    	
-    }
-    
-    public static void main(String[] args) {
-    	SaladBar o = new SaladBar();
-    	String type, name, size;
-    	int number, calories;
-    	double price;
-    	
-    	File infile = new File(fileName);
-    	Scanner input = new Scanner(System.in);
-    	o.populateIngredients(input);
-    	
-    	// Welcome and ask user choose the size
-    	// if small 6.45, else large 7.65
-    	// according size decide the original price
-    	
-    	// ask user choose chef or self
-    	// if chef, ask name, name.toUpperCase()
-    	// new Chef(String name, ArrayList<Ingredient> ingredients)
-    	
-    	// if self, ask chose 1 Organic Green, 3 Veggies, 2 Toppings, 1 Proteins, and Dressing
-    	
-    	System.out.print("Please choose 1 Organic Green: ");
-    	
-    	
-    	c.add(ingredients, name);
-    	
-    }
+	public static void main(String[] args) {
+		ArrayList<BasicSalad> salads = new ArrayList<BasicSalad>();
+		SaladBar order = new SaladBar();
+		
+		String choice;
+		String chefOption = "";
+		int selfOption = 0;
+		String name = "", size, another;
+		double totalPrice = 0.0;
+		boolean again;
+		
+		ArrayList<Ingredient> ingredient = null;
+
+		Stock stock = new Stock();
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Welcome to Salad Daze! ");
+		do {
+			System.out.print("\nDo you want to choose a chef or your own? (Enter 'C' for chef 'S' for self): ");
+			choice = input.nextLine();
+			while (!choice.equalsIgnoreCase("c") && !choice.equalsIgnoreCase("s")) {
+				System.out.println("Wrong enter, please try again");
+				System.out.print("\nDo you want to choose a chef or your own? (Enter 'C' for chef 'S' for self): ");
+				choice = input.nextLine();
+			}
+			if (choice.equalsIgnoreCase("c")) {
+				order.printMenu();
+				
+				again = true;
+				while(again){
+						System.out.print("\nPlease choose one Chef's Salad from 1-" + ChefCreation.dishesName.length + ": ");
+						chefOption = input.next();
+
+					switch (chefOption) {
+				  	case "1":
+				  		name = "Chicken Ceaser";
+				  		System.out.println("\nYou choose: " + name);
+				  		order.printIngredient(ChefCreation.chickenCaesar);
+				  		ingredient = stock.createDish(ChefCreation.chickenCaesar);
+				  		again = false;
+				  		break;
+				  	case "2":
+				  		name = "Southwestern Chicken";
+				  		System.out.println("\nYou choose: " + name);
+				  		order.printIngredient(ChefCreation.southwesternChicken);
+				  		ingredient = stock.createDish(ChefCreation.southwesternChicken);
+				  		again = false;
+				  		break;
+				  	case "3":
+				  		name = "Spinach Bacon";
+				  		System.out.println("\nYou choose: " + name);
+				  		order.printIngredient(ChefCreation.spinachBacon);
+				  		ingredient = stock.createDish(ChefCreation.spinachBacon);
+				  		again = false;
+				  		break;
+				  	case "4":
+				  		name = "Spring Green Salad";
+				  		System.out.println("\nYou choose: " + name);
+				  		order.printIngredient(ChefCreation.springGreenSalad);
+				  		ingredient = stock.createDish(ChefCreation.springGreenSalad);
+				  		again = false;
+				  		break;
+				  	case "5":
+				  		name = "Mediterranean Pasta";
+				  		System.out.println("\nYou choose: " + name);
+				  		order.printIngredient(ChefCreation.mediterraneanPasta);
+				  		ingredient = stock.createDish(ChefCreation.mediterraneanPasta);
+				  		again = false;
+				  		break;
+				  	case "6":
+				  		name = "Chinese Chicken";
+				  		System.out.println("\nYou choose: " + name);
+				  		order.printIngredient(ChefCreation.chineseChicken);
+				  		ingredient = stock.createDish(ChefCreation.chineseChicken);
+				  		again = false;
+				  		break;
+				  	default:
+				  		name = "";
+				  		System.out.println("\nPlease enter a number between 1 to " + ChefCreation.dishesName.length + "!");
+				  		again = true;
+				  		break;
+					}
+				}
+
+				size = order.askSize(input);
+				ChefCreation c = new ChefCreation(name, size);
+				c.setIngredient(ingredient);
+				salads.add(c);
+				input.nextLine();
+				
+				System.out.print("Do you want to add or remove something?('A' for add, 'A' for remove");
+				chefOption = input.nextLine();
+				if (chefOption.equalsIgnoreCase("A")) {
+					Sysre
+				}
+				c.add(i);
+
+			} else {
+				ArrayList<String> selfIn = new ArrayList<>();
+				ArrayList<String> greens = stock.findByType("Greens");
+				ArrayList<String> veggies = stock.findByType("Veggies");
+				ArrayList<String> protein = stock.findByType("Protein");
+				ArrayList<String> topping = stock.findByType("Topping");
+				ArrayList<String> dressing = stock.findByType("Dressing");
+
+				size = order.askSize(input);
+				SelfCreation s = new SelfCreation(size);
+				
+				again = true;
+				while (again) {
+					try {
+						System.out.println("\nPlease select 1 Green:");
+						stock.printByType(greens);
+						System.out.print("\nPlease select by number 1 - " + greens.size() + ": ");
+						selfOption = input.nextInt();
+						selfIn.add(greens.get(selfOption - 1));
+						again = false;
+					} catch (IndexOutOfBoundsException e) {
+						System.out.println("Wrong number, please try again.");
+					}
+				}
+				
+				again = true;
+				while (again) {
+					try {
+						System.out.println("\nPlease select 2 Veggies:");
+						stock.printByType(veggies);
+						System.out.print("\nPlease select by number 1 - " + veggies.size() + "(connect with a black space): ");
+						selfOption = input.nextInt();
+						selfIn.add(veggies.get(selfOption - 1));
+						selfOption = input.nextInt();
+						selfIn.add(veggies.get(selfOption - 1));
+						again = false;
+					} catch (IndexOutOfBoundsException e) {
+						System.out.println("Wrong number, please try again.");
+					}
+				}
+				
+				again = true;
+				while (again) {
+					try {
+						if (s.getSize().equals("small")) {
+							System.out.println("\nPlease select 1 Protein:");
+						}
+						if (s.getSize().equals("large")) {
+							System.out.println("\nPlease select 2 Protein:");
+						}
+						stock.printByType(protein);
+						System.out.print("\nPlease select by number 1 - " + protein.size() + ": ");
+						selfOption = input.nextInt();
+						selfIn.add(protein.get(selfOption - 1));
+						if (s.getSize().equals("large")) {
+							selfOption = input.nextInt();
+							selfIn.add(protein.get(selfOption - 1));
+						}
+						again = false;
+					} catch (IndexOutOfBoundsException e) {
+						System.out.println("Wrong number, please try again.");
+					}
+				}
+				
+				again = true;
+				while (again) {
+					try {
+						System.out.println("\nPlease select 3 Topping:");
+						stock.printByType(topping);
+						System.out.print("\nPlease select by number 1 - " + topping.size() + "(connect with a black space): ");
+						selfOption = input.nextInt();
+						selfIn.add(topping.get(selfOption - 1));
+						selfOption = input.nextInt();
+						selfIn.add(topping.get(selfOption - 1));
+						selfOption = input.nextInt();
+						selfIn.add(topping.get(selfOption - 1));
+						again = false;
+					} catch (IndexOutOfBoundsException e) {
+						System.out.println("Wrong number, please try again.");
+					}
+				}
+				
+				again = true;
+				while (again) {
+					try {
+						System.out.println("\nPlease select 2 Dressing:");
+						stock.printByType(dressing);
+						System.out.print("\nPlease select by number 1 - " + dressing.size() + "(connect with a black space): ");
+						//while (input.hasNextInt()) {
+							selfOption = input.nextInt();
+							selfIn.add(dressing.get(selfOption - 1));
+							selfOption = input.nextInt();
+							selfIn.add(dressing.get(selfOption - 1));
+						//}
+						again = false;
+					} catch (IndexOutOfBoundsException e) {
+						System.out.println("Wrong number, please try again.");
+					}
+				}
+				
+				ingredient = stock.createDish(selfIn);
+				s.setIngredient(ingredient);
+				salads.add(s);
+				input.nextLine();
+			}
+			
+			System.out.print("\n\nDo you need order another one?(end with 'n')");
+			another = input.nextLine();
+		} while (!another.equalsIgnoreCase("n"));
+		
+		
+		for (int i = 0; i < salads.size(); i++) {
+			System.out.println(salads.get(i));
+			totalPrice += salads.get(i).getPrice();
+		}
+		
+		System.out.printf("\nTotal price: %.2f", totalPrice);
+	}
 }

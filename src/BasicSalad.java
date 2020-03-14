@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**
 * @author 
 * @author 
@@ -9,26 +7,83 @@ import java.util.ArrayList;
 public abstract class BasicSalad {
 	private final double SMALL_PRICE = 6.45;
 	private final double LARGE_PRICE = 7.65;
-	private double price;
+	private String name;
 	private String size;
+	private double price;
+	private int calories;
 	
-	public BasicSalad(size);
-		
-	
-	//public abstract void add(ArrayList<BasicSalad> i, String ingredient);
-	
-	
-	public void add(ArrayList<Ingredient> i, String ingredient) {
-		
+	public BasicSalad() {
+		name = "Unknow name";
+		price = SMALL_PRICE;
+		size = "small";
 	}
+	
+	public BasicSalad(String name, String size) {
+		this.name = name;
+		this.size = size;
+		if (size.equals("small")) {
+			price = SMALL_PRICE;
+		} else {
+			price = LARGE_PRICE;
+		}
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	public void setPrice() {
+		if (size.equals("small")) {
+			price = SMALL_PRICE;
+		} else {
+			price = LARGE_PRICE;
+		}
+	}
+	
+	public String getSize() {
+		return size;
+	}
+	
+	
+	public void setSize(String size) {
+		this.size = size;
+	}
+	
+	public int getCalories() {
+	}
+	
+	public void setCalories(int calories) {
+		this.calories = calories;
+	}
+	
+	public void addPrice() {
+		price += 0.25;
+	}
+	
+	public void removePrice() {
+		price -= 0.25;
+	}
+	
+	public abstract void add(Ingredient i);
 
-	public void remove(ArrayList<BasicSalad> i, String ingredient) {
-		
-	}
+	public abstract void remove(Ingredient i);
 	
-	public void printIngredient() {
-		
+	public abstract String printIngredient();
+	
+	public abstract int totalCalories(); // 
+	
+	@Override public String toString() {
+		return "\nSize: " + size + "\nPrice: " + price; 
 	}
 	
 	
 }
+
