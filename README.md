@@ -6,8 +6,8 @@ It can order two types of salad. Implement the salad service to place orders and
 Also, it can caculate the calories for each dishes. 
 
 Team member: 
-Jing Yang
-Venus Mai
-Sharon Zhang
-Wei Wang
+Jing Yang,\
+Venus Mai,\
+Sharon Zhang,\
+Wei Wang,\
 Ansar
