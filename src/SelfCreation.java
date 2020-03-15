@@ -33,7 +33,7 @@ public class SelfCreation extends BasicSalad {
 	}
 	
 	@Override
-	public void remove(Ingredient i) {
+	public void remove(String i) {
 		selfIngredient.remove(i);
 		removePrice();
 	}

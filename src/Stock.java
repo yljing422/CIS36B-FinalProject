@@ -173,7 +173,7 @@ public class Stock {
 	 * @param name name of ingredient
 	 * @return index of the name's object at stock
 	 */
-		bubbleSort();
+	public int binarySearch(String name) {
 		int start = 0;
 		int end = stock.size() - 1;
 		while (start <= end) {

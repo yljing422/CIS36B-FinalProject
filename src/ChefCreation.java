@@ -38,10 +38,14 @@ public class ChefCreation extends BasicSalad {
 	}
 	
 	@Override
-	public void remove(Ingredient i) {
-		chefIngredient.remove(i);
+	public void remove(String in) {
+		for (int i = 0; i < chefIngredient.size(); i++) {
+			if (chefIngredient.get(i).getName().equalsIgnoreCase(in)) {
+				chefIngredient.remove(i);
+				break;
+			}
+		}
 		removePrice();
-		
 	}
 	
 	

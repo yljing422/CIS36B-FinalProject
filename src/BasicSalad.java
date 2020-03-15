@@ -52,12 +52,12 @@ public abstract class BasicSalad {
 		return size;
 	}
 	
-	
 	public void setSize(String size) {
 		this.size = size;
 	}
 	
 	public int getCalories() {
+		return calories;
 	}
 	
 	public void setCalories(int calories) {
@@ -74,7 +74,7 @@ public abstract class BasicSalad {
 	
 	public abstract void add(Ingredient i);
 
-	public abstract void remove(Ingredient i);
+	public abstract void remove(String i);
 	
 	public abstract String printIngredient();
 	

@@ -140,12 +140,22 @@ public class SaladBar {
 				salads.add(c);
 				input.nextLine();
 				
-				System.out.print("Do you want to add or remove something?('A' for add, 'A' for remove");
+				System.out.print("Do you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order)");
 				chefOption = input.nextLine();
-				if (chefOption.equalsIgnoreCase("A")) {
-					Sysre
+				while (!chefOption.equalsIgnoreCase("n")) {
+					if (chefOption.equalsIgnoreCase("A")) {
+					
+					} else if (chefOption.equalsIgnoreCase("R")) {
+						System.out.println(c.printIngredient());
+						System.out.println("What ingredient you want remove?");
+						chefOption = input.nextLine();
+						c.remove(chefOption);
+					} else {
+						System.out.println("Wrong enter, please try again.");
+					}
+					System.out.print("Do you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order)");
+					chefOption = input.nextLine();
 				}
-				c.add(i);
 
 			} else {
 				ArrayList<String> selfIn = new ArrayList<>();
