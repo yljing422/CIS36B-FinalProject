@@ -8,12 +8,13 @@ import java.util.ArrayList;
 public class ChefCreation extends BasicSalad {
 	ArrayList<Ingredient> chefIngredient;
 	public static final String[] dishesName = {"CHICKEN CAESAR", "SOUTHWESTERN CHICKEN", "SPINACH BACON", "SPRING GREEN SALAD", "MEDITERRANEAN PASTA", "CHINESE CHICKEN"};
-	public static final String[] chickenCaesar = {"Grilled Marinated Chicken", "Romaine Lettuce", "Parmesan Shredded And Grated Cheese", "Crispy Croutons", "Caesar Dressing"};
-	public static final String[] southwesternChicken = {"Grilled Marinated Chicken", "Avocado", "Tomato", "Black Beans", "Corn", "Parmesan Shredded And Grated Cheese", "Tortilla Chips", "Romaine Lettuce", "Cilantro Dressing", "Chipotle Dressing"};
-	public static final String[] spinachBacon = {"Organic Baby Spinach", "Bacon", "Chopped Egg", "Roasted Peppers", "Carrot", "Mandarin Oranges", "Bean Sprouts", "Sesame Dressing"};
-	public static final String[] springGreenSalad = {"Spring Mix", "Candied Walnuts", "Dried Cranberries", "Apples", "Grilled Marinated Chicken", "Mushrooms", "Balsamic Vinegar"};
-	public static final String[] mediterraneanPasta = {"Spring Mix", "Pasta", "Roasted Peppers", "Olives", "Garbanzos Beans", "Cucumbers", "Feta Cheese", "Pesto Dressing"};
-	public static final String[] chineseChicken = {"Grilled Marinated Chicken", "IceBerg Lettuce", "Cilantro", "Green Onion", "Fried Noodles", "Peanuts", "Sesame Dressing"};
+	public static final String[] chickenCaesar = {"Grilled Marinated Chicken", "Romaine Lettuce", "\nParmesan Shredded And Grated Cheese", "\nCrispy Croutons", "Caesar Dressing"};
+	public static final String[] southwesternChicken = {"Grilled Marinated Chicken", "Avocado", "\nTomato", "Black Beans", "Corn", "\nParmesan Shredded And Grated Cheese", "\nTortilla Chips", "Romaine Lettuce", "\nCilantro Dressing", "Chipotle Dressing"};
+	public static final String[] spinachBacon = {"Organic Baby Spinach", "Bacon", "Chopped Egg", "\nRoasted Peppers", "Carrot", "Mandarin Oranges", "\nBean Sprouts", "Sesame Dressing"};
+	public static final String[] springGreenSalad = {"Spring Mix", "Candied Walnuts", "Dried Cranberries", "\nApples", "Grilled Marinated Chicken", "\nMushrooms", "Balsamic Vinegar"};
+	public static final String[] mediterraneanPasta = {"Spring Mix", "Pasta", "Roasted Peppers", "\nOlives", "Garbanzos Beans", "Cucumbers", "\nFeta Cheese", "Pesto Dressing"};
+	public static final String[] chineseChicken = {"Grilled Marinated Chicken", "IceBerg Lettuce", "\nCilantro", "Green Onion", "Fried Noodles", "\nPeanuts", "Sesame Dressing"};
+	
 	
 	public ChefCreation() {
 		super();
