@@ -43,16 +43,16 @@ public class SaladBar {
 		}
 	}
 	
-	public void addIngredient(Scanner input) {
-		int chefOption;
-		System.out.print("What type of ingredient do you want to add?");
-		System.out.println("1. Greens\n2. Veggies\n3. Protein\n4. Topping\n5. Dressing");
-		chefOption = input.nextInt();
-	}
-	
 	public static void main(String[] args) {
 		ArrayList<BasicSalad> salads = new ArrayList<BasicSalad>();
 		SaladBar order = new SaladBar();
+
+		Stock stock = new Stock();
+		ArrayList<String> greens = stock.findByType("Greens");
+		ArrayList<String> veggies = stock.findByType("Veggies");
+		ArrayList<String> protein = stock.findByType("Protein");
+		ArrayList<String> topping = stock.findByType("Topping");
+		ArrayList<String> dressing = stock.findByType("Dressing");
 		
 		String choice;
 		String chefOption = "";
@@ -62,8 +62,7 @@ public class SaladBar {
 		boolean again;
 		
 		ArrayList<Ingredient> ingredient = null;
-
-		Stock stock = new Stock();
+		
 		Scanner input = new Scanner(System.in);
 
 		System.out.println("Welcome to Salad Daze! ");
@@ -140,31 +139,67 @@ public class SaladBar {
 				salads.add(c);
 				input.nextLine();
 				
-				System.out.print("Do you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order)");
+				System.out.print("\nDo you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order) ");
 				chefOption = input.nextLine();
 				while (!chefOption.equalsIgnoreCase("n")) {
 					if (chefOption.equalsIgnoreCase("A")) {
-					
+						int addType;
+						int addNumOfName;
+						String addName = "";
+						
+						System.out.println("1. Greens\n2. Veggies\n3. Protein\n4. Topping\n5. Dressing");
+						System.out.print("\nWhat type of ingredient do you want to add? ");
+						addType = input.nextInt();
+						
+						switch (addType) {
+							case 1:
+								stock.printByType(greens);
+								System.out.print("Please enter the number you need add. ");
+								addNumOfName = input.nextInt();
+								addName = greens.get(addNumOfName - 1);
+								break;
+							case 2:
+								stock.printByType(veggies);
+								System.out.print("Please enter the number you need add. ");
+								addNumOfName = input.nextInt();
+								addName = veggies.get(addNumOfName - 1);
+								break;
+							case 3:
+								stock.printByType(protein);
+								System.out.print("Please enter the number you need add. ");
+								addNumOfName = input.nextInt();
+								addName = protein.get(addNumOfName - 1);
+								break;
+							case 4:
+								stock.printByType(topping);
+								System.out.print("Please enter the number you need add. ");
+								addNumOfName = input.nextInt();
+								addName = topping.get(addNumOfName - 1);
+								break;
+							case 5:
+								stock.printByType(dressing);
+								System.out.print("Please enter the number you need add. ");
+								addNumOfName = input.nextInt();
+								addName = dressing.get(addNumOfName - 1);
+								break;
+						}
+						input.nextLine();
+						c.add(stock.add(addName));
+						
 					} else if (chefOption.equalsIgnoreCase("R")) {
 						System.out.println(c.printIngredient());
-						System.out.println("What ingredient you want remove?");
+						System.out.println("What ingredient you want remove? ");
 						chefOption = input.nextLine();
 						c.remove(chefOption);
 					} else {
 						System.out.println("Wrong enter, please try again.");
 					}
-					System.out.print("Do you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order)");
+					System.out.print("\nDo you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order) ");
 					chefOption = input.nextLine();
 				}
 
 			} else {
 				ArrayList<String> selfIn = new ArrayList<>();
-				ArrayList<String> greens = stock.findByType("Greens");
-				ArrayList<String> veggies = stock.findByType("Veggies");
-				ArrayList<String> protein = stock.findByType("Protein");
-				ArrayList<String> topping = stock.findByType("Topping");
-				ArrayList<String> dressing = stock.findByType("Dressing");
-
 				size = order.askSize(input);
 				SelfCreation s = new SelfCreation(size);
 				
@@ -249,6 +284,7 @@ public class SaladBar {
 							selfOption = input.nextInt();
 							selfIn.add(dressing.get(selfOption - 1));
 							selfOption = input.nextInt();
+					
 							selfIn.add(dressing.get(selfOption - 1));
 						//}
 						again = false;
@@ -261,9 +297,67 @@ public class SaladBar {
 				s.setIngredient(ingredient);
 				salads.add(s);
 				input.nextLine();
+				
+				System.out.print("\nDo you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order)");
+				chefOption = input.nextLine();
+				while (!chefOption.equalsIgnoreCase("n")) {
+					if (chefOption.equalsIgnoreCase("A")) {
+						int addType;
+						int addNumOfName;
+						String addName = "";
+						System.out.println("1. Greens\n2. Veggies\n3. Protein\n4. Topping\n5. Dressing");
+						System.out.print("\nWhat type of ingredient do you want to add? ");
+						addType = input.nextInt();
+						
+						switch (addType) {
+						case 1:
+							stock.printByType(greens);
+							System.out.print("Please enter the number you need add. ");
+							addNumOfName = input.nextInt();
+							addName = greens.get(addNumOfName - 1);
+							break;
+						case 2:
+							stock.printByType(veggies);
+							System.out.print("Please enter the number you need add. ");
+							addNumOfName = input.nextInt();
+							addName = veggies.get(addNumOfName - 1);
+							break;
+						case 3:
+							stock.printByType(protein);
+							System.out.print("Please enter the number you need add. ");
+							addNumOfName = input.nextInt();
+							addName = protein.get(addNumOfName - 1);
+							break;
+						case 4:
+							stock.printByType(topping);
+							System.out.print("Please enter the number you need add. ");
+							addNumOfName = input.nextInt();
+							addName = topping.get(addNumOfName - 1);
+							break;
+						case 5:
+							stock.printByType(dressing);
+							System.out.print("Please enter the number you need add. ");
+							addNumOfName = input.nextInt();
+							addName = dressing.get(addNumOfName - 1);
+							break;
+						}
+						input.nextLine();
+						s.add(stock.add(addName));
+						
+					} else if (chefOption.equalsIgnoreCase("R")) {
+						System.out.println(s.printIngredient());
+						System.out.println("What ingredient you want remove? ");
+						chefOption = input.nextLine();
+						s.remove(chefOption);
+					} else {
+						System.out.println("Wrong enter, please try again.");
+					}
+					System.out.print("\nDo you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order) ");
+					chefOption = input.nextLine();
+				}
 			}
 			
-			System.out.print("\n\nDo you need order another one?(end with 'n')");
+			System.out.print("\n\nDo you need order another one?(end with 'n') ");
 			another = input.nextLine();
 		} while (!another.equalsIgnoreCase("n"));
 		

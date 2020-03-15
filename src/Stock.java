@@ -145,7 +145,10 @@ public class Stock {
 	 */
 	public Ingredient add(String name) throws NoSuchElementException {
 		int idx = binarySearch(name);
-		if (stock.get(idx).getNumber() > 0) {
+		if (idx < 0) {
+			System.out.println("Not fund ingredient");
+			return null;
+		} else if (stock.get(idx).getNumber() > 0) {
 			updateStock(stock.get(idx));
 			return stock.get(idx);
 		} else {
@@ -174,6 +177,7 @@ public class Stock {
 	 * @return index of the name's object at stock
 	 */
 	public int binarySearch(String name) {
+		bubbleSort();
 		int start = 0;
 		int end = stock.size() - 1;
 		while (start <= end) {
@@ -189,7 +193,8 @@ public class Stock {
 		return -1;
 	}
 
-	@Override public String toString() {
+	@Override 
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < stock.size(); i++) {
 			sb.append(stock.get(i));

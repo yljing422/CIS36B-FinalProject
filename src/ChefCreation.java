@@ -32,9 +32,8 @@ public class ChefCreation extends BasicSalad {
 	}
 	
 	@Override
-	public void add(Ingredient i) {
-		chefIngredient.add(i);
-		addPrice();
+	public void add(Ingredient in) {
+		chefIngredient.add(in);
 	}
 	
 	@Override

@@ -27,14 +27,18 @@ public class SelfCreation extends BasicSalad {
 	}
 	
 	@Override
-	public void add(Ingredient i) {
-		selfIngredient.add(i);
-		addPrice();
+	public void add(Ingredient in) {
+		selfIngredient.add(in);
 	}
 	
 	@Override
-	public void remove(String i) {
-		selfIngredient.remove(i);
+	public void remove(String in) {
+		for (int i = 0; i < selfIngredient.size(); i++) {
+			if (selfIngredient.get(i).getName().equalsIgnoreCase(in)) {
+				selfIngredient.remove(i);
+				break;
+			}
+		}
 		removePrice();
 	}
 	

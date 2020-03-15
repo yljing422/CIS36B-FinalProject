@@ -4,6 +4,8 @@
 * CIS 36B, Final Project
 */
 
+import java.text.DecimalFormat;
+
 public abstract class BasicSalad {
 	private final double SMALL_PRICE = 6.45;
 	private final double LARGE_PRICE = 7.65;
@@ -81,7 +83,8 @@ public abstract class BasicSalad {
 	public abstract int totalCalories(); // 
 	
 	@Override public String toString() {
-		return "\nSize: " + size + "\nPrice: " + price; 
+		DecimalFormat df = new DecimalFormat("#.00");
+		return "\nSize: " + size + "\nPrice: " + df.format(price); 
 	}
 	
 	
