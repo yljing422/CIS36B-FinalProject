@@ -8,35 +8,65 @@ import java.util.ArrayList;
 public class ChefCreation extends BasicSalad {
 	ArrayList<Ingredient> chefIngredient;
 	public static final String[] dishesName = {"CHICKEN CAESAR", "SOUTHWESTERN CHICKEN", "SPINACH BACON", "SPRING GREEN SALAD", "MEDITERRANEAN PASTA", "CHINESE CHICKEN"};
-	public static final String[] chickenCaesar = {"Grilled Marinated Chicken", "Romaine Lettuce", "\nParmesan Shredded And Grated Cheese", "\nCrispy Croutons", "Caesar Dressing"};
-	public static final String[] southwesternChicken = {"Grilled Marinated Chicken", "Avocado", "\nTomato", "Black Beans", "Corn", "\nParmesan Shredded And Grated Cheese", "\nTortilla Chips", "Romaine Lettuce", "\nCilantro Dressing", "Chipotle Dressing"};
-	public static final String[] spinachBacon = {"Organic Baby Spinach", "Bacon", "Chopped Egg", "\nRoasted Peppers", "Carrot", "Mandarin Oranges", "\nBean Sprouts", "Sesame Dressing"};
-	public static final String[] springGreenSalad = {"Spring Mix", "Candied Walnuts", "Dried Cranberries", "\nApples", "Grilled Marinated Chicken", "\nMushrooms", "Balsamic Vinegar"};
-	public static final String[] mediterraneanPasta = {"Spring Mix", "Pasta", "Roasted Peppers", "\nOlives", "Garbanzos Beans", "Cucumbers", "\nFeta Cheese", "Pesto Dressing"};
-	public static final String[] chineseChicken = {"Grilled Marinated Chicken", "IceBerg Lettuce", "\nCilantro", "Green Onion", "Fried Noodles", "\nPeanuts", "Sesame Dressing"};
+	public static final String[] chickenCaesar = {"Grilled Marinated Chicken", "Romaine Lettuce", "Parmesan Shredded And Grated Cheese", "Crispy Croutons", "Caesar Dressing"};
+	public static final String[] southwesternChicken = {"Grilled Marinated Chicken", "Avocado", "Tomato", "Black Beans", "Corn", "Parmesan Shredded And Grated Cheese", "Tortilla Chips", "Romaine Lettuce", "Cilantro Dressing", "Chipotle Dressing"};
+	public static final String[] spinachBacon = {"Organic Baby Spinach", "Bacon", "Chopped Egg", "Roasted Peppers", "Carrot", "Mandarin Oranges", "Bean Sprouts", "Sesame Dressing"};
+	public static final String[] springGreenSalad = {"Spring Mix", "Candied Walnuts", "Dried Cranberries", "Apples", "Grilled Marinated Chicken", "Mushrooms", "Balsamic Vinegar"};
+	public static final String[] mediterraneanPasta = {"Spring Mix", "Pasta", "Roasted Peppers", "Olives", "Garbanzos Beans", "Cucumbers", "Feta Cheese", "Pesto Dressing"};
+	public static final String[] chineseChicken = {"Grilled Marinated Chicken", "IceBerg Lettuce", "Cilantro", "Green Onion", "Fried Noodles", "Peanuts", "Sesame Dressing"};
 	
 	
+	/**
+	 * Default constructor for ChefCreation.
+	 * Set the price and size to default value  
+	 * Declare a ArrayList for all ingredients for the Chefcreations
+	 */
 	public ChefCreation() {
 		super();
 		chefIngredient = new ArrayList<>();
 	}
 	
+	/**
+	 * Two-arguments constructor for ChefCreation. 
+	 * Set the price and size to default value  
+	 * Declare a ArrayList for all ingredients for the Chefcreations
+	 */
 	public ChefCreation(String name, String size) {
 		super(name, size);
 		chefIngredient = new ArrayList<Ingredient>();
 	}
 	
+	/**
+	 * Copy the ingredients into the ArrayList chefcreations
+	 * @param in the list of ingredients for chefcreation
+	 */
 	public void setIngredient(ArrayList<Ingredient> in) {
 		for (int i = 0; i < in.size(); i++) {
 			chefIngredient.add(in.get(i));
 		}
 	}
 	
+	
+	/**
+	 * Returns the list of the ingredients for chefCreation
+	 * @return the list of the ingredients 
+	 */
+	public ArrayList<Ingredient> getIngredient (){
+		return this.chefIngredient;
+	}
+	/**
+	 * Add a new ingredient to the salad
+	 * @param i new ingredient
+	 */
 	@Override
 	public void add(Ingredient in) {
 		chefIngredient.add(in);
 	}
 	
+	/**
+	 * Remove the ingredient from the salad
+	 * @param i the ingredient need to remove 
+	 */
 	@Override
 	public void remove(String in) {
 		for (int i = 0; i < chefIngredient.size(); i++) {
@@ -48,7 +78,9 @@ public class ChefCreation extends BasicSalad {
 		removePrice();
 	}
 	
-	
+	/**
+	 * Calculate the total calories for all ingredients within a salad
+	 */
 	@Override 
 	public int totalCalories() {
 		for (int i = 0 ; i < this.chefIngredient.size() ; i++) {
@@ -81,4 +113,6 @@ public class ChefCreation extends BasicSalad {
 		return "\n\nYour choice: " + getName() + printIngredient() + "\nCalorie: " + this.totalCalories() + " calories" + super.toString();
 	}
 }
+
+
 
