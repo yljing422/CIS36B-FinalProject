@@ -58,6 +58,7 @@ public class SaladBar {
 
 		String choice;
 		String chefOption = "";
+		int Remove = 0; ///
 		int selfOption = 0;
 		String name = "", size, another;
 		double totalPrice = 0.0;
@@ -140,7 +141,7 @@ public class SaladBar {
 				size = order.askSize(input);
 				ChefCreation c = new ChefCreation(name, size);
 				c.setIngredient(ingredient);
-				//salads.add(c);
+				// salads.add(c);
 				input.nextLine();
 
 				System.out.print(
@@ -193,20 +194,24 @@ public class SaladBar {
 						c.add(stock.add(addName));
 
 					} else if (chefOption.equalsIgnoreCase("R")) {
-						System.out.println(c.printIngredient());
-						System.out.println("What ingredient you want remove? ");
-						chefOption = input.nextLine();
+						ArrayList<Ingredient> chef = c.getIngredient();
+						System.out.println("What ingredient you want remove? (Enter 1 from " + chef.size() + ")");
+						for (int i = 0; i < chef.size(); i++) {
+							System.out.println(i + 1 + ". " + chef.get(i).getName());
+						}
+						Remove = input.nextInt();
 						c.removePrice();
-						c.remove(chefOption);
+						c.remove(chef.get(Remove - 1).getName());
 					} else {
 						System.out.println("Wrong enter, please try again.");
 					}
 					System.out.print(
 							"\nDo you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order) ");
+					input.nextLine();
 					chefOption = input.nextLine();
-					
+
 				}
-				salads.add(c);///
+				salads.add(c);
 
 			} else {
 				ArrayList<String> selfIn = new ArrayList<>();
@@ -374,15 +379,20 @@ public class SaladBar {
 						s.add(stock.add(addName));
 
 					} else if (chefOption.equalsIgnoreCase("R")) {
-						System.out.println(s.printIngredient());
-						System.out.println("What ingredient you want remove? ");
-						chefOption = input.nextLine();
-						s.remove(chefOption);
+						ArrayList<Ingredient> self = s.getIngredient();
+						System.out.println("What ingredient you want remove? (Enter 1 from " + self.size() + ")");
+						for (int i = 0; i < self.size(); i++) {
+							System.out.println(i + 1 + ". " + self.get(i).getName());
+						}
+						Remove = input.nextInt();
+						s.removePrice();
+						s.remove(self.get(Remove - 1).getName());
 					} else {
 						System.out.println("Wrong enter, please try again.");
 					}
 					System.out.print(
 							"\nDo you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order) ");
+					input.nextLine();
 					chefOption = input.nextLine();
 				}
 			}
@@ -399,4 +409,3 @@ public class SaladBar {
 		System.out.printf("\nTotal price: %.2f", totalPrice);
 	}
 }
-
