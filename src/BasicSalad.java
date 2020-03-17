@@ -1,6 +1,7 @@
 /**
-* @author 
-* @author 
+* @author Yunjing Mai
+* @author Xinfang Zhang
+* @author Jing Yang
 * CIS 36B, Final Project
 */
 

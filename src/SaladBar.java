@@ -1,7 +1,10 @@
 
 /**
- * @author
- * @author
+ * @author Yunjing Mai
+ * @author Jing Yang
+ * @author Xinfang Zhang
+ * @author Ansar Shaikh
+ * @author Wei Wang
  * CIS 36B, Final Project
  */
 
