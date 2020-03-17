@@ -28,7 +28,7 @@ public class Ingredient implements Comparable<Ingredient> {
 		calories = i.calories;
 	}
 	
-	// Getter
+	// Getters
 	public String getType() {
 		return type;
 	}
@@ -45,7 +45,7 @@ public class Ingredient implements Comparable<Ingredient> {
 		return calories;
 	}
 	
-	// Setter
+	// Setters
 	public void setType(String type) {
 		this.type = type;
 	}
