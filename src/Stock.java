@@ -63,11 +63,11 @@ public class Stock {
 	 * @param type type of ingredient
 	 * @return the name of the same type of ingredient
 	 */
-	public ArrayList<String> findByType(String type) {
-		ArrayList<String> ingredientByType = new ArrayList<>();
+	public ArrayList<Ingredient> findByType(String type) {
+		ArrayList<Ingredient> ingredientByType = new ArrayList<>();
 		for (int i = 0; i < stock.size(); i++) {
-			if (stock.get(i).getType().equals(type)) {
-				ingredientByType.add(stock.get(i).getName());
+			if (stock.get(i).getType().equalsIgnoreCase(type)) {
+				ingredientByType.add(stock.get(i));
 			}
 		}
 		return ingredientByType;
@@ -75,7 +75,7 @@ public class Stock {
 	
 	/**
 	 * Print the ingredient name of same type
-	 * @param type type of ingredient
+	 * @param ingredientByType type of ingredient
 	 */
 	public void printByType(ArrayList<String> ingredientByType) {
 		for (int j = 0; j < ingredientByType.size(); j++) {
@@ -97,8 +97,8 @@ public class Stock {
 						throw new NoSuchElementException("Sorry, not able to create dish, because" + stock.get(j).getName() + " is out of stock");
 					}
 					temp = new Ingredient(stock.get(j));
+					temp.setNumber(1);
 					result.add(temp);
-					updateStock(stock.get(j));
 					break;
 				}
 			}
@@ -122,7 +122,6 @@ public class Stock {
 					}
 					temp = new Ingredient(stock.get(j));
 					result.add(temp);
-					updateStock(stock.get(j));
 					break;
 				}
 			}
@@ -132,29 +131,20 @@ public class Stock {
 	
 	/**
 	 * Reduce stock number when ingredient be sold
-	 * @param in the ingredient be sold
+	 * @param dishIngredients the ingredient be sold
 	 */
-	private void updateStock(Ingredient in) {
-		in.setNumber(in.getNumber() - 1);;
-	}
-	
-	/**
-	 * Add extra ingredient
-	 * @param name the ingredient name need added
-	 * @return the ingredient's object
-	 */
-	public Ingredient add(String name) throws NoSuchElementException {
-		int idx = binarySearch(name);
-		if (idx < 0) {
-			System.out.println("Not fund ingredient");
-			return null;
-		} else if (stock.get(idx).getNumber() > 0) {
-			updateStock(stock.get(idx));
-			return stock.get(idx);
-		} else {
-			throw new NoSuchElementException("Sorry, " + name + " is out of stock"); // catch Exception at main
+	public void updateStock(ArrayList<Ingredient> dishIngredients) throws Exception{
+		for (int i = 0; i < dishIngredients.size(); i++) {
+			Ingredient current = dishIngredients.get(i);
+			Ingredient stockIngredient = binarySearch(current.getName());
+			if (current.getNumber() > stockIngredient.getNumber()) {
+				throw new Exception("Out of stock");
+			} else {
+				stockIngredient.setNumber(stockIngredient.getNumber() - current.getNumber());
+			}
 		}
 	}
+
 	
 	/**
 	 * Sort stock data according name, type, calories
@@ -176,21 +166,21 @@ public class Stock {
 	 * @param name name of ingredient
 	 * @return index of the name's object at stock
 	 */
-	public int binarySearch(String name) {
+	public Ingredient binarySearch(String name) {
 		bubbleSort();
 		int start = 0;
 		int end = stock.size() - 1;
 		while (start <= end) {
 			int mid = (start + end) / 2;
 			if (name.equals(stock.get(mid).getName())) {
-				return mid;
+				return stock.get(mid);
 			} else if (name.compareTo(stock.get(mid).getName()) > 0) {
 				start = mid + 1;
 			} else {
 				end = mid - 1;
 			}
 		}
-		return -1;
+		return null;
 	}
 
 	@Override 
