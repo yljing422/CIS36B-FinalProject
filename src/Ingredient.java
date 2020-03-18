@@ -13,14 +13,16 @@ public class Ingredient implements Comparable<Ingredient> {
 	public Ingredient() {
 		this("Unknow type", "Unknow name", 0, 0);
 	}
-	
+
+	// All args constructor
 	public Ingredient(String type, String name, int number, int calories) {
 		this.type = type;
 		this.name = name;
 		this.number = number;
 		this.calories = calories;
 	}
-	
+
+	//Deep Copy Constructor
 	public Ingredient(Ingredient i) {
 		type = i.type;
 		name = i.name;
