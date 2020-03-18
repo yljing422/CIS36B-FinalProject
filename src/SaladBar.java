@@ -40,11 +40,21 @@ public class SaladBar {
 	public String askSize() {
 		Scanner input = new Scanner(System.in);
 		System.out.print("\nWhat size do you want? (1 for small, 2 for large): ");
-		int size = input.nextInt();
-		while (size != 1 && size != 2) {
-			System.out.println("Wrong enter, please try again.");
-			System.out.print("What size do you want? (1 for small, 2 for large): ");
-			size = input.nextInt();
+		boolean valid = false;
+		int size = 0;
+		while (!valid) {
+			try {
+				size = input.nextInt();
+				if (size != 1 && size != 2) {
+					System.out.println("please enter the valid value for the size, 1 for small or 2 for large");
+					continue;
+				}
+				valid = true;
+			} catch (InputMismatchException e) {
+				System.out.println("Please enter a number, not a text!");
+				System.out.print("What size do you want? (1 for small, 2 for large): ");
+				input.nextLine();
+			}
 		}
 
 		if (size == 1) {
@@ -179,7 +189,9 @@ public class SaladBar {
 			chef.increaseProteinSize();
 		}
 		chef.setDishIngredient(ingredients);
-		System.out.println("Your chef order: " + chef.getName() + " current price right now is " + chef.getPrice());
+		System.out.print("Your chef order: " + chef.getName() + " ");
+		System.out.printf("Current price right now is: %.2f", chef.getPrice());
+
 		return chef;
 	}
 
@@ -215,7 +227,7 @@ public class SaladBar {
 			}
 		}
 		self.setPrice(size);
-		System.out.println("Your self selection salad current price is : " + self.getPrice());
+		System.out.printf("Your self selection salad current price is  %.2f", self.getPrice());
 		return self;
 	}
 
@@ -242,7 +254,7 @@ public class SaladBar {
 			if(salad.findIngredientNumber(currentIngredient.getName()) < currentIngredient.getNumber()) {
 				salad.add(currentIngredient);
 				System.out.println("You added: Type: " + currentIngredient.getType() + " Name: " + currentIngredient.getName());
-				System.out.println("Current price right now is: " + salad.getPrice());
+				System.out.printf("Current price right now is: %.2f", salad.getPrice());
 			} else {
 				System.out.println("Sorry" + currentIngredient.getName() + " doesn't have enough stock");
 			}
@@ -253,7 +265,7 @@ public class SaladBar {
 			Ingredient removedIngredient = salad.getDishIngredient().get(ingredientIndex - 1);
 			salad.remove(removedIngredient);
 			System.out.println("You have removed 1 : Type: " + removedIngredient.getType() + " Name: " + removedIngredient.getName());
-			System.out.println("Current price right now is: " + salad.getPrice());
+			System.out.printf("Current price right now is: %.2f", salad.getPrice());
 		}
 	}
 
