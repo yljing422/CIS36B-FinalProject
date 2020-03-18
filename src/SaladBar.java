@@ -201,14 +201,15 @@ public class SaladBar {
 			printIngredient(stockIngredientByType);
 			for (int j = 0; j < quantities; j++) {
 				int choice = askThingsToAddOrRemove(stockIngredientByType.size());
-				if (self.findIngredientNumber(INGREDIENT_TYPES[i]) < stockIngredientByType.get(choice - 1).getNumber()) {
+				Ingredient addIngredient = stockIngredientByType.get(choice - 1);
+				if (self.findIngredientNumber(addIngredient.getName()) < addIngredient.getNumber()) {
 					self.add(stockIngredientByType.get(choice - 1));
 					System.out.println("you have selected " + stockIngredientByType.get(choice - 1).getName());
 					System.out.println("you have " + (quantities - j - 1) + " " + INGREDIENT_TYPES[i] + " to Select");
 					System.out.println();
 				} else {
 					j--;
-					System.out.println("This ingredient " + INGREDIENT_TYPES[i] + "doesn't have enough stock");
+					System.out.println("This ingredient " + addIngredient.getName() + " doesn't have enough stock");
 					System.out.println("Please re-select from the list");
 				}
 			}
@@ -265,6 +266,7 @@ public class SaladBar {
 		BasicSalad salad;
 		boolean isContinueOrder = true;
 		while (isContinueOrder) {
+			//create different type of Salad Object
 			String dishType = s.askDish();
 			String size = s.askSize();
 			if (dishType.equalsIgnoreCase("c")) {
@@ -272,12 +274,15 @@ public class SaladBar {
 			} else {
 				salad = s.processSelfOrder(size);
 			}
+			//add or remove ingredient
 			String choiceOption = s.askAddOrRemove();
 			while (!choiceOption.equalsIgnoreCase("n")) {
 				s.processAddOrRemove(salad, choiceOption);
 				choiceOption = s.askAddOrRemove();
 			}
+			// add dish to order
 			s.order.add(salad);
+
 			try {
 				s.stock.updateStock(salad.getDishIngredient());
 			} catch (Exception e) {
@@ -286,6 +291,7 @@ public class SaladBar {
 
 			isContinueOrder = s.askUserContinue();
 		}
+
 		double totalPrice = 0;
 		for (int i = 0; i < s.order.size(); i++) {
 			System.out.println(s.order.get(i));

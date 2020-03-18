@@ -80,7 +80,6 @@ public abstract class BasicSalad {
 		for (int i = 0; i < dishIngredient.size(); i++) {
 			if (dishIngredient.get(i).getName().equalsIgnoreCase(in.getName())){
 				dishIngredient.get(i).setNumber(dishIngredient.get(i).getNumber() + 1);
-				//change price?? TODO
 				return;
 			}
 		}
@@ -120,12 +119,11 @@ public abstract class BasicSalad {
 	 * print ingredient in the selfIngredient;
 	 */
 	public String printIngredient() {
-		String in = "\n";
-		for (int i = 0; i < dishIngredient.size() - 1; i++) {
-			in += dishIngredient.get(i).getName() + ", ";
+		StringBuilder sb = new StringBuilder("\n");
+		for (int i = 0; i < dishIngredient.size(); i++) {
+			sb.append(dishIngredient.get(i).getName()).append("quantity: ").append(dishIngredient.get(i).getNumber()).append("\n");
 		}
-		in += dishIngredient.get(dishIngredient.size() - 1).getName();
-		return in;
+		return sb.toString();
 	}
 	
 	public abstract int totalCalories(); // 
