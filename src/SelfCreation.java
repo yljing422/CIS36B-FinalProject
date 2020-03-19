@@ -40,7 +40,7 @@ public class SelfCreation extends BasicSalad {
 	 */
 	@Override
 	public String toString() {
-		return "\n\nYour choice: " + NAME + printIngredient() + "\nCalorie: " + this.totalCalories() + " calories"
+		return "\nYour choice: " + NAME + printIngredient() + "\nCalorie: " + this.totalCalories() + " calories"
 				+ super.toString();
 	}
 

@@ -10,10 +10,13 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.io.*;
 
 public class SaladBar {
-	Stock stock;
-	ArrayList<BasicSalad> order;
+	public static int count = 0;
+	private Stock stock;
+	private ArrayList<BasicSalad> order;
+	private Scanner input = new Scanner(System.in);
 
 	String[] INGREDIENT_TYPES = {"Greens", "Veggies", "Protein", "Topping", "Dressing"};
 	int[] INGREDIENT_TYPES_QUANTITIES = {1, 2, 1, 3, 2};
@@ -37,15 +40,16 @@ public class SaladBar {
 	}
 
 	public String askSize() {
-		Scanner input = new Scanner(System.in);
 		System.out.print("\nWhat size do you want? (1 for small, 2 for large): ");
 		boolean valid = false;
 		int size = 0;
 		while (!valid) {
 			try {
 				size = input.nextInt();
+				input.nextLine();
 				if (size != 1 && size != 2) {
 					System.out.println("please enter the valid value for the size, 1 for small or 2 for large");
+					System.out.print("What size do you want? (1 for small, 2 for large): ");
 					continue;
 				}
 				valid = true;
@@ -55,19 +59,16 @@ public class SaladBar {
 				input.nextLine();
 			}
 		}
-		input.close();
 		
 		if (size == 1) {
 			return "small";
 		} else {
 			return "large";
 		}
-		
 	}
 
 	private String askDish() {
 		String choice;
-		Scanner input = new Scanner(System.in);
 		System.out.print("\nDo you want to choose a chef or your own? (Enter 'C' for chef 'S' for self): ");
 		choice = input.nextLine();
 		while (!choice.equalsIgnoreCase("c") && !choice.equalsIgnoreCase("s")) {
@@ -75,31 +76,29 @@ public class SaladBar {
 			System.out.print("\nDo you want to choose a chef or your own? (Enter 'C' for chef 'S' for self): ");
 			choice = input.nextLine();
 		}
-		input.close();
 		return choice;
 	}
 
 	private String askAddOrRemove() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("\nDo you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order) ");
+		System.out.print("\n\nDo you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order) ");
 		String choice = input.nextLine();
 		while (!choice.equalsIgnoreCase("a") && !choice.equalsIgnoreCase("r") && !choice.equalsIgnoreCase("n")) {
 			System.out.println("Wrong enter, please try again");
 			System.out.print("\nDo you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order) ");
 			choice = input.nextLine();
 		}
-		input.close();
+
 		return choice;
 	}
 
 	private int askThingsToAddOrRemove(int limit) {
-		Scanner input = new Scanner(System.in);
 		boolean again = true;
 		int choice = -1;
 		while (again) {
 			try {
-				System.out.print("Your choice: ");
+				System.out.print("\nYour choice: ");
 				choice = input.nextInt();
+				input.nextLine();
 				if (choice > limit || choice < 1) {
 					System.out.println("It is out of the range. Please select from 1 to " + limit);
 					continue;
@@ -110,16 +109,15 @@ public class SaladBar {
 				System.out.println("Please enter a number, not a text!");
 				input.nextLine();
 			}
+			
 		}
-		input.close();
+
 		return choice;
 	}
 
 	private boolean askUserContinue() {
-		Scanner input = new Scanner(System.in);
 		System.out.print("\n\nDo you need order another one?(end with 'n') ");
 		String another = input.nextLine();
-		input.close();
 		
 		if (another.equalsIgnoreCase("N")) {
 			return false;
@@ -128,7 +126,6 @@ public class SaladBar {
 	}
 
 	private ChefCreation processChefOrder(String size) {
-		Scanner input = new Scanner(System.in);
 		String name = null;
 		boolean again = true;
 		String chefOption;
@@ -137,7 +134,7 @@ public class SaladBar {
 		printChefMenu();
 		while (again) {
 			System.out.print("\nPlease choose one Chef's Salad from 1-" + ChefCreation.dishesName.length + ": ");
-			chefOption = input.next();
+			chefOption = input.nextLine();
 
 			switch (chefOption) {
 				case "1":
@@ -184,32 +181,30 @@ public class SaladBar {
 					break;
 				default:
 					name = "";
-					System.out.println(
-							"\nPlease enter a number between 1 to " + ChefCreation.dishesName.length + "!");
+					System.out.println("Please enter a number between 1 to " + ChefCreation.dishesName.length + "!");
 					again = true;
 					break;
 			}
 		}
+
 		ChefCreation chef = new ChefCreation(name, size);
 		if (size.equalsIgnoreCase("L")) {
 			chef.increaseProteinSize();
 		}
 		chef.setDishIngredient(ingredients);
-		System.out.print("Your chef order: " + chef.getName() + " ");
+		System.out.println("\nYour chef order: " + chef.getName() + " ");
 		System.out.printf("Current price right now is: %.2f", chef.getPrice());
-		input.close();
 		
 		return chef;
 	}
 
 	private SelfCreation processSelfOrder(String size) {
-
 		SelfCreation self = new SelfCreation(size);
 		ArrayList<Ingredient> stockIngredientByType = new ArrayList<>();
 
 		for (int i = 0; i < INGREDIENT_TYPES.length; i++) {
 			int quantities = 0;
-			System.out.println(INGREDIENT_TYPES[i]);
+			System.out.println("\n" + INGREDIENT_TYPES[i]);
 			if (INGREDIENT_TYPES[i].equalsIgnoreCase("protein") && size.equalsIgnoreCase("large")) {
 				quantities = INGREDIENT_TYPES_QUANTITIES[i] + 1;
 			} else {
@@ -225,7 +220,6 @@ public class SaladBar {
 					self.add(stockIngredientByType.get(choice - 1));
 					System.out.println("you have selected " + stockIngredientByType.get(choice - 1).getName());
 					System.out.println("you have " + (quantities - j - 1) + " " + INGREDIENT_TYPES[i] + " to Select");
-					System.out.println();
 				} else {
 					j--;
 					System.out.println("This ingredient " + addIngredient.getName() + " doesn't have enough stock");
@@ -240,7 +234,7 @@ public class SaladBar {
 
 
 	private void printIngredient(ArrayList<Ingredient> ingredientsByType) {
-		System.out.println("The available ingredients are: ");
+		System.out.println("\nThe available ingredients are: ");
 		for (int i = 0; i < ingredientsByType.size(); i++) {
 			System.out.println(i + 1 + ". " + ingredientsByType.get(i).getName());
 		}
@@ -252,7 +246,7 @@ public class SaladBar {
 		}
 		if (choiceOption.equalsIgnoreCase("a")) {
 			System.out.println("1. Greens\n2. Veggies\n3. Protein\n4. Topping\n5. Dressing");
-			System.out.print("\nWhat type of ingredient do you want to add? ");
+			System.out.print("What type of ingredient do you want to add? ");
 			int typeIndex = askThingsToAddOrRemove(5);
 			ArrayList<Ingredient> stockIngredientByType = stock.findByType(INGREDIENT_TYPES[typeIndex - 1]);
 			printIngredient(stockIngredientByType);
@@ -260,7 +254,7 @@ public class SaladBar {
 			Ingredient currentIngredient = stockIngredientByType.get(ingredientIndex - 1);
 			if(salad.findIngredientNumber(currentIngredient.getName()) < currentIngredient.getNumber()) {
 				salad.add(currentIngredient);
-				System.out.println("You added: Type: " + currentIngredient.getType() + " Name: " + currentIngredient.getName());
+				System.out.println("\nYou added: \nType: " + currentIngredient.getType() + "\nName: " + currentIngredient.getName());
 				System.out.printf("Current price right now is: %.2f", salad.getPrice());
 			} else {
 				System.out.println("Sorry" + currentIngredient.getName() + " doesn't have enough stock");
@@ -271,15 +265,22 @@ public class SaladBar {
 			int ingredientIndex = askThingsToAddOrRemove(salad.dishIngredient.size());
 			Ingredient removedIngredient = salad.getDishIngredient().get(ingredientIndex - 1);
 			salad.remove(removedIngredient);
-			System.out.println("You have removed 1 : Type: " + removedIngredient.getType() + " Name: " + removedIngredient.getName());
+			System.out.println("\nYou have removed: \nType: " + removedIngredient.getType() + "\nName: " + removedIngredient.getName());
 			System.out.printf("Current price right now is: %.2f", salad.getPrice());
 		}
 	}
+	
+	public static int countDishes() {
+		count++;
+		return count;
+	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException{
 		SaladBar s = new SaladBar();
 		s.stock = new Stock();
 		s.order = new ArrayList<>();
+		File outfile = new File("receipt.txt");
+		PrintWriter out = new PrintWriter(outfile);
 
 		System.out.println("Welcome to Salad Daze! ");
 		BasicSalad salad;
@@ -301,6 +302,7 @@ public class SaladBar {
 			}
 			// add dish to order
 			s.order.add(salad);
+			countDishes();
 
 			try {
 				s.stock.updateStock(salad.getDishIngredient());
@@ -310,13 +312,30 @@ public class SaladBar {
 
 			isContinueOrder = s.askUserContinue();
 		}
-
+		
 		double totalPrice = 0;
+		System.out.println("\n\n#############################################");
+		System.out.println("Receipt:");
+		out.println("Receipt:");
+		
+		if (count > 1) { 
+			System.out.println("You ordered " + count + " salads.");
+			out.println("You ordered " + count + "salads.");
+		} else {
+			System.out.println("You ordered " + count + " salad.");
+			out.println("You ordered " + count + "salad.");
+		}
+		
 		for (int i = 0; i < s.order.size(); i++) {
+			System.out.print("\n" + (i + 1) + ": ");
+			out.print("\n" + (i + 1) + ": ");
 			System.out.println(s.order.get(i));
+			out.println(s.order.get(i));
 			totalPrice += s.order.get(i).getPrice();
 		}
 
-		System.out.printf("\nTotal price: %.2f", totalPrice);
+		System.out.printf("\n\nTotal price: %.2f", totalPrice);
+		out.printf("\n\nTotal price: %.2f", totalPrice);
+		out.close();
 	}
 }

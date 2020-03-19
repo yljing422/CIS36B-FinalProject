@@ -68,6 +68,6 @@ public class ChefCreation extends BasicSalad {
 	 * call printIngredient()
 	 */
 	@Override public String toString() {
-		return "\n\nYour choice: " + name + printIngredient() + "\nCalorie: " + this.totalCalories() + " calories" + super.toString();
+		return "\nYour choice: " + name + printIngredient() + "\nCalorie: " + this.totalCalories() + " calories" + super.toString();
 	}
 }
