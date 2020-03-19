@@ -100,4 +100,3 @@ public class Ingredient implements Comparable<Ingredient> {
 		}
 	}
 }
-

@@ -98,13 +98,18 @@ public abstract class BasicSalad {
 	 * @param in the ingredient need added
 	 */
 	public void add(Ingredient in) {
+		boolean exist = false;
 		for (int i = 0; i < dishIngredient.size(); i++) {
 			if (dishIngredient.get(i).getName().equalsIgnoreCase(in.getName())){
 				dishIngredient.get(i).setNumber(dishIngredient.get(i).getNumber() + 1);
-				return;
+				exist = true;
+				break;
 			}
 		}
-		dishIngredient.add(new Ingredient(in.getType(), in.getName(), 1, in.getCalories()));
+		if (!exist) {
+			dishIngredient.add(new Ingredient(in.getType(), in.getName(), 1, in.getCalories()));
+		}
+		
 		if (!in.getType().equalsIgnoreCase("Dressing")) {
 			addPrice();
 		}
@@ -151,7 +156,7 @@ public abstract class BasicSalad {
 	public String printIngredient() {
 		StringBuilder sb = new StringBuilder("\n");
 		for (int i = 0; i < dishIngredient.size(); i++) {
-			sb.append(dishIngredient.get(i).getName()).append(", quantity: ").append(dishIngredient.get(i).getNumber()).append("\n");
+			sb.append(dishIngredient.get(i).getName()).append(", Qty: ").append(dishIngredient.get(i).getNumber()).append("\n");
 		}
 		return sb.toString();
 	}

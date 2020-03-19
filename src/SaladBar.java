@@ -320,10 +320,10 @@ public class SaladBar {
 		
 		if (count > 1) { 
 			System.out.println("You ordered " + count + " salads.");
-			out.println("You ordered " + count + "salads.");
+			out.println("You ordered " + count + " salads.");
 		} else {
 			System.out.println("You ordered " + count + " salad.");
-			out.println("You ordered " + count + "salad.");
+			out.println("You ordered " + count + " salad.");
 		}
 		
 		for (int i = 0; i < s.order.size(); i++) {
