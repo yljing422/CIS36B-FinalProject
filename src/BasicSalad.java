@@ -16,20 +16,22 @@ public abstract class BasicSalad {
 	private double price;
 	private int calories;
 	
+	/**
+	 * Default constructor, set size to small, 
+	 * set price is small price, create a new ArrayList of dish
+	 */
 	public BasicSalad() {
 		price = SMALL_PRICE;
 		size = "small";
 		dishIngredient = new ArrayList<>();
 	}
 
-	public ArrayList<Ingredient> getDishIngredient() {
-		return dishIngredient;
-	}
-
-	public void setDishIngredient(ArrayList<Ingredient> dishIngredient) {
-		this.dishIngredient = dishIngredient;
-	}
-
+	/**
+	 * one argument constructor, set the size 
+	 * and set price according size, small is 6.45, large is 7.65
+	 * create a new ArrayList of dish
+	 * @param size
+	 */
 	public BasicSalad(String size) {
 		dishIngredient = new ArrayList<>();
 		this.size = size;
@@ -38,6 +40,15 @@ public abstract class BasicSalad {
 		} else {
 			price = LARGE_PRICE;
 		}
+	}
+	
+	// Getters and Setters
+	public ArrayList<Ingredient> getDishIngredient() {
+		return dishIngredient;
+	}
+
+	public void setDishIngredient(ArrayList<Ingredient> dishIngredient) {
+		this.dishIngredient = dishIngredient;
 	}
 
 	public double getPrice() {
@@ -68,14 +79,24 @@ public abstract class BasicSalad {
 		this.calories = calories;
 	}
 	
-	public void addPrice() {
+	/**
+	 * Adjust price when add extra ingredient except add Dressing, each plus 0.25
+	 */
+	private void addPrice() {
 		price += 0.25;
 	}
 	
-	public void removePrice() {
+	/**
+	 * Adjust price when remove ingredient except remove Dressing, each minus 0.25
+	 */
+	private void removePrice() {
 		price -= 0.25;
 	}
 
+	/**
+	 * Add extra ingredient to the Salad object, adjust the number of ingredient in the salad and price
+	 * @param in the ingredient need added
+	 */
 	public void add(Ingredient in) {
 		for (int i = 0; i < dishIngredient.size(); i++) {
 			if (dishIngredient.get(i).getName().equalsIgnoreCase(in.getName())){
@@ -89,6 +110,10 @@ public abstract class BasicSalad {
 		}
 	}
 
+	/**
+	 * Remove ingredient from Salad object, adjust the number of ingredient in the salad and price
+	 * @param in the ingredient need removed
+	 */
 	public void remove(Ingredient in) {
 		for (int i = 0; i < dishIngredient.size(); i++) {
 			Ingredient currentIngredient = dishIngredient.get(i);
@@ -106,6 +131,11 @@ public abstract class BasicSalad {
 		}
 	}
 
+	/**
+	 * Check the number of each ingredient in salad object 
+	 * @param name name of the ingredient
+	 * @return the number of ingredient in salad
+	 */
 	public int findIngredientNumber(String name) {
 		for (int i = 0; i < dishIngredient.size(); i++) {
 			if (dishIngredient.get(i).getName().equalsIgnoreCase(name)) {
@@ -116,23 +146,24 @@ public abstract class BasicSalad {
 	}
 
 	/**
-	 * print ingredient in the selfIngredient;
+	 * print ingredient in the salad
 	 */
 	public String printIngredient() {
 		StringBuilder sb = new StringBuilder("\n");
 		for (int i = 0; i < dishIngredient.size(); i++) {
-			sb.append(dishIngredient.get(i).getName()).append("quantity: ").append(dishIngredient.get(i).getNumber()).append("\n");
+			sb.append(dishIngredient.get(i).getName()).append(", quantity: ").append(dishIngredient.get(i).getNumber()).append("\n");
 		}
 		return sb.toString();
 	}
 	
-	public abstract int totalCalories(); // 
+	/**
+	 * Calculate the total calories for one dish
+	 * @return
+	 */
+	public abstract int totalCalories();
 	
 	@Override public String toString() {
 		DecimalFormat df = new DecimalFormat("#.00");
 		return "\nSize: " + size + "\nPrice: " + df.format(price); 
 	}
-	
-	
 }
-

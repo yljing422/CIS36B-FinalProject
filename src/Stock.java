@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.NoSuchElementException;
 
-public class Stock {
+public class Stock implements Search {
 	ArrayList<Ingredient> stock;
     private static final String fileName = "ingredients.txt";
 	
-    // Constructor
+    /**
+     * Default constructor for Stock, create a new ArrayList of current stock
+     * call populateIngredients() to read from ingredients.txt file
+     */
 	public Stock() {
 		stock = new ArrayList<>();
 		populateIngredients();
@@ -29,7 +32,7 @@ public class Stock {
 	/**
 	 * Reads from a file and populates the catalog thought create Ingredient object and then add in ArrayList
 	 */
-	private void populateIngredients() {
+	public void populateIngredients() {
 		String name, type;
 		int number, calories;
 		
@@ -74,16 +77,6 @@ public class Stock {
 	}
 	
 	/**
-	 * Print the ingredient name of same type
-	 * @param ingredientByType type of ingredient
-	 */
-	public void printByType(ArrayList<String> ingredientByType) {
-		for (int j = 0; j < ingredientByType.size(); j++) {
-			System.out.println((j + 1) + ". " + ingredientByType.get(j));
-		}
-	}
-	
-	/**
 	 * Collect all of the chef creation ingredient after finish select, transfer array to ArrayList, and then call createDish(ArrayList<String> name)
 	 * @param name ingredients are ordered
 	 */
@@ -94,33 +87,10 @@ public class Stock {
 			for (int j = 0; j < stock.size(); j++) {
 				if (stock.get(j).getName().equalsIgnoreCase(name[i])) {
 					if (stock.get(j).getNumber() <= 0){
-						throw new NoSuchElementException("Sorry, not able to create dish, because" + stock.get(j).getName() + " is out of stock");
+						throw new NoSuchElementException("Sorry, not able to create dish, because " + stock.get(j).getName() + " is out of stock");
 					}
 					temp = new Ingredient(stock.get(j));
 					temp.setNumber(1);
-					result.add(temp);
-					break;
-				}
-			}
-		}
-		return result;
-	}
-	
-	/**
-	 * Collect all of the self creation ingredient after finish select
-	 * @param name ingredients are ordered
-	 * @return list of all ingredient object
-	 */
-	public ArrayList<Ingredient> createDish(ArrayList<String> name) throws NoSuchElementException {
-		Ingredient temp;
-		ArrayList<Ingredient> result = new ArrayList<>();
-		for (int i = 0; i < name.size(); i++) {
-			for (int j = 0; j < stock.size(); j++) {
-				if (stock.get(j).getName().equalsIgnoreCase(name.get(i))) {
-					if (stock.get(j).getNumber() <= 0){
-						throw new NoSuchElementException("Sorry, not able to create dish, because" + stock.get(j).getName() + " is out of stock");
-					}
-					temp = new Ingredient(stock.get(j));
 					result.add(temp);
 					break;
 				}

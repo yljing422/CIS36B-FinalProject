@@ -4,20 +4,20 @@
 * CIS 36B, Final Project
 */
 
-
 public class SelfCreation extends BasicSalad {
+	private final String NAME = "Self made";
 
 	/**
-	 * Default constructor for SelfCreation. Set the price and size to default value
-	 * Declare a ArrayList for all ingredients for the Selfcreations
+	 * Default constructor for SelfCreation. 
+	 * call superclass
 	 */
 	public SelfCreation() {
 		super();
 	}
 
 	/**
-	 * Two-arguments constructor for SelfCreation. Set the price and size to default
-	 * value Declare a ArrayList for all ingredients for the Selfcreations
+	 * One argument constructor for SelfCreation.
+	 * call superclass with size
 	 */
 	public SelfCreation(String size) {
 		super(size);
@@ -26,7 +26,7 @@ public class SelfCreation extends BasicSalad {
 	/**
 	 * Calculate the total calories for all ingredients within a salad
 	 */
-	@Override
+	@Override 
 	public int totalCalories() {
 		int total = 0;
 		for (int i = 0; i < dishIngredient.size(); i++) {
@@ -40,7 +40,7 @@ public class SelfCreation extends BasicSalad {
 	 */
 	@Override
 	public String toString() {
-		return "\n\nYour choice: self selection" + printIngredient() + "\nCalorie: " + this.totalCalories() + " calories"
+		return "\n\nYour choice: " + NAME + printIngredient() + "\nCalorie: " + this.totalCalories() + " calories"
 				+ super.toString();
 	}
 

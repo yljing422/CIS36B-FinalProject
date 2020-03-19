@@ -1,4 +1,3 @@
-
 /**
  * @author Yunjing Mai
  * @author Jing Yang
@@ -56,12 +55,14 @@ public class SaladBar {
 				input.nextLine();
 			}
 		}
-
+		input.close();
+		
 		if (size == 1) {
 			return "small";
 		} else {
 			return "large";
 		}
+		
 	}
 
 	private String askDish() {
@@ -74,6 +75,7 @@ public class SaladBar {
 			System.out.print("\nDo you want to choose a chef or your own? (Enter 'C' for chef 'S' for self): ");
 			choice = input.nextLine();
 		}
+		input.close();
 		return choice;
 	}
 
@@ -86,6 +88,7 @@ public class SaladBar {
 			System.out.print("\nDo you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order) ");
 			choice = input.nextLine();
 		}
+		input.close();
 		return choice;
 	}
 
@@ -108,6 +111,7 @@ public class SaladBar {
 				input.nextLine();
 			}
 		}
+		input.close();
 		return choice;
 	}
 
@@ -115,6 +119,8 @@ public class SaladBar {
 		Scanner input = new Scanner(System.in);
 		System.out.print("\n\nDo you need order another one?(end with 'n') ");
 		String another = input.nextLine();
+		input.close();
+		
 		if (another.equalsIgnoreCase("N")) {
 			return false;
 		}
@@ -191,7 +197,8 @@ public class SaladBar {
 		chef.setDishIngredient(ingredients);
 		System.out.print("Your chef order: " + chef.getName() + " ");
 		System.out.printf("Current price right now is: %.2f", chef.getPrice());
-
+		input.close();
+		
 		return chef;
 	}
 

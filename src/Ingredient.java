@@ -9,12 +9,16 @@ public class Ingredient implements Comparable<Ingredient> {
 	private int number;
 	private int calories;
 	
-	// Constructors
+	/**
+	 * Default constructor, set type, name, number, calories to default value
+	 */
 	public Ingredient() {
 		this("Unknow type", "Unknow name", 0, 0);
 	}
 
-	// All args constructor
+	/**
+	 * All arguments constructor, specify the value of type, name, number and calories
+	 */
 	public Ingredient(String type, String name, int number, int calories) {
 		this.type = type;
 		this.name = name;
@@ -22,7 +26,9 @@ public class Ingredient implements Comparable<Ingredient> {
 		this.calories = calories;
 	}
 
-	//Deep Copy Constructor
+	/**
+	 * Deep copy constructor
+	 */
 	public Ingredient(Ingredient i) {
 		type = i.type;
 		name = i.name;
@@ -64,12 +70,12 @@ public class Ingredient implements Comparable<Ingredient> {
 		this.calories = calories;
 	}
 
-	@Override
+	@Override 
 	public String toString() {
 		return "Type: " + type + "\nName: " + name + "\nNumber: " + number + "\nCalories: " + calories + "\n\n";
 	}
 	
-	@Override
+	@Override 
 	public boolean equals(Object o) {
 		if (this == o) {
 			return true;
@@ -81,7 +87,7 @@ public class Ingredient implements Comparable<Ingredient> {
 		}
 	}
 	
-	@Override
+	@Override 
 	public int compareTo(Ingredient i) {
 		if (this.equals(i)) {
 			return 0;

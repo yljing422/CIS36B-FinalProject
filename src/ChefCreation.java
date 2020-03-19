@@ -4,8 +4,6 @@
 * CIS 36B, Final Project
 */
 
-import java.util.ArrayList;
-
 public class ChefCreation extends BasicSalad {
 	public String getName() {
 		return name;
@@ -16,6 +14,7 @@ public class ChefCreation extends BasicSalad {
 	}
 
 	private String name;
+	
 	public static final String[] dishesName = {"CHICKEN CAESAR", "SOUTHWESTERN CHICKEN", "SPINACH BACON", "SPRING GREEN SALAD", "MEDITERRANEAN PASTA", "CHINESE CHICKEN"};
 	public static final String[] chickenCaesar = {"Grilled Marinated Chicken", "Romaine Lettuce", "Parmesan Shredded And Grated Cheese", "Crispy Croutons", "Caesar Dressing"};
 	public static final String[] southwesternChicken = {"Grilled Marinated Chicken", "Avocado", "Tomato", "Black Beans", "Corn", "Parmesan Shredded And Grated Cheese", "Tortilla Chips", "Romaine Lettuce", "Cilantro Dressing", "Chipotle Dressing"};
@@ -23,7 +22,6 @@ public class ChefCreation extends BasicSalad {
 	public static final String[] springGreenSalad = {"Spring Mix", "Candied Walnuts", "Dried Cranberries", "Apples", "Grilled Marinated Chicken", "Mushrooms", "Balsamic Vinegar"};
 	public static final String[] mediterraneanPasta = {"Spring Mix", "Pasta", "Roasted Peppers", "Olives", "Garbanzos Beans", "Cucumbers", "Feta Cheese", "Pesto Dressing"};
 	public static final String[] chineseChicken = {"Grilled Marinated Chicken", "IceBerg Lettuce", "Cilantro", "Green Onion", "Fried Noodles", "Peanuts", "Sesame Dressing"};
-	
 	
 	/**
 	 * Default constructor for ChefCreation.
@@ -73,6 +71,3 @@ public class ChefCreation extends BasicSalad {
 		return "\n\nYour choice: " + name + printIngredient() + "\nCalorie: " + this.totalCalories() + " calories" + super.toString();
 	}
 }
-
-
-
