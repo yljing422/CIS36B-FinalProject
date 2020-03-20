@@ -32,6 +32,9 @@ public class SaladBar {
 		}
 	}
 
+	/**
+	 * Display all the ingredients in the list
+	 */
 	public void printIngredient(String[] ingredients) {
 		System.out.println("The ingredients are: ");
 		for (int i = 0; i < ingredients.length - 1; i++) {
@@ -40,6 +43,11 @@ public class SaladBar {
 		System.out.println(ingredients[ingredients.length - 1]);
 	}
 
+	/**
+	 * Ask the user for ordering a small or large salad
+	 * @exception inputMismatchExceotion  if the input is a number
+	 * @return the size of customer's order 
+	 */
 	public String askSize() {
 		System.out.print("\nWhat size do you want? (1 for small, 2 for large): ");
 		boolean valid = false;
@@ -68,6 +76,11 @@ public class SaladBar {
 		}
 	}
 
+	/**
+	 * Ask the user order chef creations or make their own salad.
+	 * Check the error enter
+	 * @return the choice for ordering the chef od self salad
+	 */
 	public String askDish() {
 		String choice;
 		System.out.print("\nDo you want to choose a chef or your own? (Enter 'C' for chef 'S' for self): ");
@@ -80,6 +93,11 @@ public class SaladBar {
 		return choice;
 	}
 
+	/**
+	 * Ask the user add a new ingredient or remove the exist ingredient from the salad
+	 * Check the error enter
+	 * @return the choice of adding or removing
+	 */
 	private String askAddOrRemove() {
 		System.out.print("\n\nDo you want to add or remove something?('A' for add, 'R' for remove, 'N' for place order) ");
 		String choice = input.nextLine();
@@ -91,7 +109,13 @@ public class SaladBar {
 
 		return choice;
 	}
-
+	
+	/**
+	 * Ask the customer for what option they want to add or remove
+	 * @param limit the number of the last option which can add or remove 
+	 * @exception InputMismatchException if the customer enter the right number
+	 * @return the choice which would be added or removed
+	 */
 	private int askThingsToAddOrRemove(int limit) {
 		boolean again = true;
 		int choice = -1;
@@ -116,6 +140,11 @@ public class SaladBar {
 		return choice;
 	}
 
+	/**
+	 * Ask the customer for ordering another new salad 
+	 * Return true for ordering a new salad, otherwise return false
+	 * @return if the user continue to order a new salad
+	 */
 	private boolean askUserContinue() {
 		System.out.print("\n\nDo you need order another one?(end with 'n') ");
 		String another = input.nextLine();
@@ -126,6 +155,13 @@ public class SaladBar {
 		return true;
 	}
 
+	/**
+	 * Ask user choose one of the chef creations , 
+	 * then create a arrayList of all ingredients for the specific chef salad.
+	 * If the size is large , upgrade to a two=protein salad
+	 * @param size the size of the salad
+	 * @return ChefCreation object which is updated chef salad for the customer
+	 */
 	private ChefCreation processChefOrder(String size) {
 		String name = null;
 		boolean again = true;
@@ -199,6 +235,12 @@ public class SaladBar {
 		return chef;
 	}
 
+	/**
+	 * Ask customer for choosing the limited ingredients for every specific type
+	 * If the number of the some ingredient is zero, inform the user that it's out of stock
+	 * @param size the size of the salad 
+	 * @return selfCreation which is the updated self-made for the customer
+	 */
 	private SelfCreation processSelfOrder(String size) {
 		SelfCreation self = new SelfCreation(size);
 		ArrayList<Ingredient> stockIngredientByType = new ArrayList<>();
@@ -233,7 +275,10 @@ public class SaladBar {
 		return self;
 	}
 
-
+	/**
+	 * Display all the ingredients of a specific type 
+	 * @param ingredientsByType
+	 */
 	private void printIngredient(ArrayList<Ingredient> ingredientsByType) {
 		System.out.println("\nThe available ingredients are: ");
 		for (int i = 0; i < ingredientsByType.size(); i++) {
@@ -241,6 +286,16 @@ public class SaladBar {
 		}
 	}
 
+	/**
+	 * According to the user's option, to edit salad.
+	 * If choice is "n" , then stop the edition of the salad
+	 * It choice is "a" , ask user what type of ingredients they want to add and
+	 * add the specific ingredient.
+	 * Otherwise, ask user for what specific ingredient they want to remove 
+	 * from the ordered salad
+	 * @param salad the ordered salad
+	 * @param choiceOption the choice for adding or removing or no editing 
+	 */
 	private void processAddOrRemove(BasicSalad salad, String choiceOption) {
 		if (choiceOption.equalsIgnoreCase("n")) {
 			return;
@@ -271,6 +326,10 @@ public class SaladBar {
 		}
 	}
 	
+	/**
+	 * Count the total amount of salads
+	 * @return the number of the salads
+	 */
 	public static int countDishes() {
 		count++;
 		return count;

@@ -42,6 +42,10 @@ public class ChefCreation extends BasicSalad {
 		this.name = name;
 	}
 
+	/**
+	 * Calculate the total calories of the specific salad
+	 * @return the total calories
+	 */
 	@Override 
 	public int totalCalories() {
 		for (int i = 0 ; i < dishIngredient.size() ; i++) {
@@ -55,6 +59,10 @@ public class ChefCreation extends BasicSalad {
 		
 	}
 
+	/**
+	 * If protein is one of the type of ingredients' types,
+	 * then add one more protein to the ingredients
+	 */
 	public void increaseProteinSize() {
 		for (int i = 0; i < dishIngredient.size(); i++) {
 			if (dishIngredient.get(i).getType().equalsIgnoreCase("protein")) {
@@ -65,7 +73,8 @@ public class ChefCreation extends BasicSalad {
 	}
 
 	/**
-	 * call printIngredient()
+	 * Call printIngredient()
+	 * and print the name and calories of the salad.
 	 */
 	@Override public String toString() {
 		return "\nYour choice: " + name + printIngredient() + "\nCalorie: " + this.totalCalories() + " calories" + super.toString();

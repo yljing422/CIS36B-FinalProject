@@ -18,7 +18,7 @@ public abstract class BasicSalad {
 	
 	/**
 	 * Default constructor, set size to small, 
-	 * set price is small price, create a new ArrayList of dish
+	 * set price is small price, create a new ArrayList of salad
 	 */
 	public BasicSalad() {
 		price = SMALL_PRICE;
@@ -95,7 +95,7 @@ public abstract class BasicSalad {
 
 	/**
 	 * Add extra ingredient to the Salad object, adjust the number of ingredient in the salad and price
-	 * @param in the ingredient need added
+	 * @param in  the ingredient need to be added
 	 */
 	public void add(Ingredient in) {
 		boolean exist = false;
@@ -117,7 +117,7 @@ public abstract class BasicSalad {
 
 	/**
 	 * Remove ingredient from Salad object, adjust the number of ingredient in the salad and price
-	 * @param in the ingredient need removed
+	 * @param in the ingredient need to be removed
 	 */
 	public void remove(Ingredient in) {
 		for (int i = 0; i < dishIngredient.size(); i++) {
@@ -135,7 +135,7 @@ public abstract class BasicSalad {
 			removePrice();
 		}
 	}
-
+	
 	/**
 	 * Check the number of each ingredient in salad object 
 	 * @param name name of the ingredient
@@ -152,6 +152,7 @@ public abstract class BasicSalad {
 
 	/**
 	 * print ingredient in the salad
+	 * @return The ingredients of the salad
 	 */
 	public String printIngredient() {
 		StringBuilder sb = new StringBuilder("\n");
@@ -163,10 +164,14 @@ public abstract class BasicSalad {
 	
 	/**
 	 * Calculate the total calories for one dish
-	 * @return
+	 * @return totalCalories
 	 */
 	public abstract int totalCalories();
 	
+	/**
+	 * Creates a basic salad String to print out the size and price of the salad 
+	 * @return the string of size and priza of the salad
+	 */
 	@Override public String toString() {
 		DecimalFormat df = new DecimalFormat("#.00");
 		return "\nSize: " + size + "\nPrice: " + df.format(price); 

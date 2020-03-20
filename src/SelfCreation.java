@@ -25,6 +25,7 @@ public class SelfCreation extends BasicSalad {
 
 	/**
 	 * Calculate the total calories for all ingredients within a salad
+	 * @return total calories
 	 */
 	@Override 
 	public int totalCalories() {
@@ -36,7 +37,8 @@ public class SelfCreation extends BasicSalad {
 	}
 
 	/**
-	 * call printIngredient()
+	 * Call printIngredient() from BasicSalad
+	 * Print the name and the total calories of the salad 
 	 */
 	@Override
 	public String toString() {
