@@ -1,8 +1,9 @@
+
 /**
-* @author Yunjing Mai
-* @author Xinfang Zhang
-* CIS 36B, Final Project
-*/
+ *  @author Yunjing Mai
+ * @author Xinfang Zhang
+ * CIS 36B, Final Project
+**/
 
 public class SelfCreation extends BasicSalad {
 	private final String NAME = "Self made";
@@ -25,6 +26,7 @@ public class SelfCreation extends BasicSalad {
 
 	/**
 	 * Calculate the total calories for all ingredients within a salad
+	 * @return total calories
 	 */
 	@Override 
 	public int totalCalories() {
@@ -36,7 +38,8 @@ public class SelfCreation extends BasicSalad {
 	}
 
 	/**
-	 * call printIngredient()
+	 * Call printIngredient() from BasicSalad
+	 * Print the name and the total calories of the salad 
 	 */
 	@Override
 	public String toString() {
@@ -45,3 +48,4 @@ public class SelfCreation extends BasicSalad {
 	}
 
 }
+

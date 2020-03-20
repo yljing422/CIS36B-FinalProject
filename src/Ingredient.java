@@ -69,12 +69,20 @@ public class Ingredient implements Comparable<Ingredient> {
 	public void setCalories(int calories) {
 		this.calories = calories;
 	}
-
+	
+	
+	/**
+	 * Print the type, name, number and calories of the salad	
+	 */
 	@Override 
 	public String toString() {
 		return "Type: " + type + "\nName: " + name + "\nNumber: " + number + "\nCalories: " + calories + "\n\n";
 	}
 	
+	/**
+	 * Compare the titles and  types of the ingredients 
+	 * @return whether two ingredients have the same name and type
+	 */
 	@Override 
 	public boolean equals(Object o) {
 		if (this == o) {
@@ -87,6 +95,10 @@ public class Ingredient implements Comparable<Ingredient> {
 		}
 	}
 	
+	/**
+	 * Compares two ingredient. Returns 0 if the two ingredients are equal 
+	 * If not same, then compare names , types , and calories of two different ingredients 
+	 */
 	@Override 
 	public int compareTo(Ingredient i) {
 		if (this.equals(i)) {
@@ -100,3 +112,5 @@ public class Ingredient implements Comparable<Ingredient> {
 		}
 	}
 }
+
+

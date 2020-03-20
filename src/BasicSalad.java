@@ -18,7 +18,7 @@ public abstract class BasicSalad {
 	
 	/**
 	 * Default constructor, set size to small, 
-	 * set price is small price, create a new ArrayList of dish
+	 * set price is small price, create a new ArrayList of salad
 	 */
 	public BasicSalad() {
 		price = SMALL_PRICE;
@@ -95,29 +95,25 @@ public abstract class BasicSalad {
 
 	/**
 	 * Add extra ingredient to the Salad object, adjust the number of ingredient in the salad and price
-	 * @param in the ingredient need added
+	 * @param in  the ingredient need to be added
 	 */
 	public void add(Ingredient in) {
-		boolean exist = false;
 		for (int i = 0; i < dishIngredient.size(); i++) {
 			if (dishIngredient.get(i).getName().equalsIgnoreCase(in.getName())){
 				dishIngredient.get(i).setNumber(dishIngredient.get(i).getNumber() + 1);
-				exist = true;
-				break;
+				return;
 			}
 		}
-		if (!exist) {
-			dishIngredient.add(new Ingredient(in.getType(), in.getName(), 1, in.getCalories()));
-		}
-		
+		dishIngredient.add(new Ingredient(in.getType(), in.getName(), 1, in.getCalories()));
 		if (!in.getType().equalsIgnoreCase("Dressing")) {
 			addPrice();
 		}
 	}
 
+	
 	/**
 	 * Remove ingredient from Salad object, adjust the number of ingredient in the salad and price
-	 * @param in the ingredient need removed
+	 * @param in the ingredient need to be removed
 	 */
 	public void remove(Ingredient in) {
 		for (int i = 0; i < dishIngredient.size(); i++) {
@@ -152,23 +148,29 @@ public abstract class BasicSalad {
 
 	/**
 	 * print ingredient in the salad
+	 * @return The ingredients of the salad
 	 */
 	public String printIngredient() {
 		StringBuilder sb = new StringBuilder("\n");
 		for (int i = 0; i < dishIngredient.size(); i++) {
-			sb.append(dishIngredient.get(i).getName()).append(", Qty: ").append(dishIngredient.get(i).getNumber()).append("\n");
+			sb.append(dishIngredient.get(i).getName()).append(", quantity: ").append(dishIngredient.get(i).getNumber()).append("\n");
 		}
 		return sb.toString();
 	}
 	
 	/**
 	 * Calculate the total calories for one dish
-	 * @return
+	 * @return totalCalories
 	 */
 	public abstract int totalCalories();
 	
+	/**
+	 * Creates a basic salad String to print out the size and price of the salad 
+	 * @return the string of size and priza of the salad
+	 */
 	@Override public String toString() {
 		DecimalFormat df = new DecimalFormat("#.00");
 		return "\nSize: " + size + "\nPrice: " + df.format(price); 
 	}
 }
+
