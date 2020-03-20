@@ -1,0 +1,31 @@
+Receipt:
+You ordered 2 salads.
+
+1: 
+Your choice: Chicken Ceaser
+Grilled Marinated Chicken, Qty: 1
+Romaine Lettuce, Qty: 1
+Parmesan Shredded And Grated Cheese, Qty: 1
+Crispy Croutons, Qty: 1
+Caesar Dressing, Qty: 1
+
+Calorie: 1016 calories
+Size: large
+Price: 7.65
+
+2: 
+Your choice: Self made
+IceBerg Lettuce, Qty: 1
+Bell Peppers, Qty: 2
+Chopped Egg, Qty: 2
+Avocado, Qty: 3
+Caesar Dressing, Qty: 2
+
+Calorie: 760 calories
+Size: large
+Price: 7.65
+
+
+Subtotal Price: 15.30
+Sale Tax: 1.42
+Order Total: 16.72

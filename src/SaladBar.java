@@ -14,6 +14,7 @@ import java.io.*;
 
 public class SaladBar {
 	public static int count = 0;
+	public static final double TAX = 0.0925;
 	private Stock stock;
 	private ArrayList<BasicSalad> order;
 	private Scanner input = new Scanner(System.in);
@@ -67,7 +68,7 @@ public class SaladBar {
 		}
 	}
 
-	private String askDish() {
+	public String askDish() {
 		String choice;
 		System.out.print("\nDo you want to choose a chef or your own? (Enter 'C' for chef 'S' for self): ");
 		choice = input.nextLine();
@@ -275,7 +276,7 @@ public class SaladBar {
 		return count;
 	}
 
-	public static void main(String[] args) throws FileNotFoundException{
+	public static void main(String[] args) throws IOException{
 		SaladBar s = new SaladBar();
 		s.stock = new Stock();
 		s.order = new ArrayList<>();
@@ -313,7 +314,10 @@ public class SaladBar {
 			isContinueOrder = s.askUserContinue();
 		}
 		
-		double totalPrice = 0;
+		// print receipt
+		double subtotal = 0;
+		double tax;
+		double total;
 		System.out.println("\n\n#############################################");
 		System.out.println("Receipt:");
 		out.println("Receipt:");
@@ -331,11 +335,19 @@ public class SaladBar {
 			out.print("\n" + (i + 1) + ": ");
 			System.out.println(s.order.get(i));
 			out.println(s.order.get(i));
-			totalPrice += s.order.get(i).getPrice();
+			subtotal += s.order.get(i).getPrice();
 		}
 
-		System.out.printf("\n\nTotal price: %.2f", totalPrice);
-		out.printf("\n\nTotal price: %.2f", totalPrice);
+		System.out.printf("\n\nSubtotal Price: %.2f", subtotal);
+		out.printf("\n\nSubtotal Price: %.2f", subtotal);
+		
+		tax = subtotal * TAX;
+		System.out.printf("\nSale Tax: %.2f", tax);
+		out.printf("\nSale Tax: %.2f", tax);
+		
+		total = subtotal + tax;
+		System.out.printf("\nOrder Total: %.2f", total);
+		out.printf("\nOrder Total: %.2f", total);
 		out.close();
 	}
 }
